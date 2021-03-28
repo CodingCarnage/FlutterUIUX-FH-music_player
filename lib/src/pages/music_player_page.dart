@@ -24,9 +24,59 @@ class ImageAlbumDuration extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 30.0),
+      margin: const EdgeInsets.only(top: 70),
       child: Row(
         children: <Widget>[
           ImageAlbum(),
+          SizedBox(width: 25.0),
+          MusicProgressBar(),
+          SizedBox(width: 20.0),
+        ],
+      ),
+    );
+  }
+}
+
+class MusicProgressBar extends StatelessWidget {
+  const MusicProgressBar({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        children: <Widget>[
+          Text(
+            '00:00',
+            style: TextStyle(
+              color: Colors.white.withOpacity(0.4),
+            ),
+          ),
+          const SizedBox(height: 10.0),
+          Stack(
+            children: <Widget>[
+              Container(
+                width: 3,
+                height: 230,
+                color: Colors.white.withOpacity(0.1),
+              ),
+              Positioned(
+                bottom: 0,
+                child: Container(
+                  width: 3,
+                  height: 150,
+                  color: Colors.white.withOpacity(0.8),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10.0),
+          Text(
+            '00:00',
+            style: TextStyle(
+              color: Colors.white.withOpacity(0.4),
+            ),
+          ),
         ],
       ),
     );
