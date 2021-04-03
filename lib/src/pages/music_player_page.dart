@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+
+import 'package:animate_do/animate_do.dart';
+import 'package:provider/provider.dart';
+
 import 'package:music_player/src/helpers/helpers.dart';
+
+import 'package:music_player/src/models/audio_player_model.dart';
 
 import 'package:music_player/src/widgets/custom_app_bar_widget.dart';
 
@@ -141,12 +147,16 @@ class _TitlePlayState extends State<TitlePlay> with SingleTickerProviderStateMix
               progress: playPauseAnimationController,
             ),
             onPressed: () {
+              final AudioPlayerModel audioPlayerModel = Provider.of<AudioPlayerModel>(context, listen: false);
+              
               if (this.isPlaying) {
                 playPauseAnimationController.reverse();
                 this.isPlaying = false;
+                audioPlayerModel.animationController.stop();
               } else {
                 playPauseAnimationController.forward();
                 this.isPlaying = true;
+                audioPlayerModel.animationController.repeat();
               }
             },
           ),
@@ -226,6 +236,8 @@ class ImageAlbum extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AudioPlayerModel audioPlayerModel = Provider.of<AudioPlayerModel>(context);
+
     return Container(
       padding: const EdgeInsets.all(20.0),
       width: 250.0,
@@ -235,8 +247,15 @@ class ImageAlbum extends StatelessWidget {
         child: Stack(
           alignment: Alignment.center,
           children: <Widget>[
-            Image(
-              image: AssetImage('assets/images/aurora.jpg'),
+            SpinPerfect(
+              duration: Duration(seconds: 10),
+              infinite: true,
+              manualTrigger: true,
+              animate: false,
+              controller: (animationController) => audioPlayerModel.animationController = animationController,
+              child: Image(
+                image: AssetImage('assets/images/aurora.jpg'),
+              ),
             ),
             Container(
               width: 25.0,
