@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:music_player/src/helpers/helpers.dart';
 
 import 'package:music_player/src/widgets/custom_app_bar_widget.dart';
 
@@ -13,7 +14,33 @@ class MusicPlayerPage extends StatelessWidget {
           CustomAppBar(),
           ImageAlbumDuration(),
           TitlePlay(),
+          Expanded(child: Lyrics()),
         ],
+      ),
+    );
+  }
+}
+
+class Lyrics extends StatelessWidget {
+  const Lyrics({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final List<String> lyrics = getLyrics();
+    return Container(
+      child: ListWheelScrollView(
+        itemExtent: 42,
+        diameterRatio: 1.5,
+        physics: BouncingScrollPhysics(),
+        children: lyrics.map(
+          (line) => Text(
+            line,
+            style: TextStyle(
+              fontSize: 20,
+              color: Colors.white.withOpacity(0.6),
+            ),
+          ),
+        ).toList(),
       ),
     );
   }
