@@ -9,13 +9,45 @@ class MusicPlayerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      body: Stack(
         children: <Widget>[
-          CustomAppBar(),
-          ImageAlbumDuration(),
-          TitlePlay(),
-          Expanded(child: Lyrics()),
+          Background(),
+          Column(
+            children: <Widget>[
+              CustomAppBar(),
+              ImageAlbumDuration(),
+              TitlePlay(),
+              Expanded(child: Lyrics()),
+            ],
+          ),
         ],
+      ),
+    );
+  }
+}
+
+class Background extends StatelessWidget {
+  const Background({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final Size screenSize = MediaQuery.of(context).size;
+
+    return Container(
+      width: double.infinity,
+      height: screenSize.height * 0.8,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(60.0),
+        ),
+        gradient: LinearGradient(
+          begin: Alignment.centerLeft,
+          end: Alignment.center,
+          colors: <Color>[
+            Color(0xff33333E),
+            Color(0xff201E28),
+          ],
+        ),
       ),
     );
   }
@@ -32,15 +64,17 @@ class Lyrics extends StatelessWidget {
         itemExtent: 42,
         diameterRatio: 1.5,
         physics: BouncingScrollPhysics(),
-        children: lyrics.map(
-          (line) => Text(
-            line,
-            style: TextStyle(
-              fontSize: 20,
-              color: Colors.white.withOpacity(0.6),
-            ),
-          ),
-        ).toList(),
+        children: lyrics
+            .map(
+              (line) => Text(
+                line,
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.white.withOpacity(0.6),
+                ),
+              ),
+            )
+            .toList(),
       ),
     );
   }
@@ -66,7 +100,7 @@ class TitlePlay extends StatelessWidget {
                 ),
               ),
               Text(
-                '-Breaking Benjamin-',
+                'Breaking Benjamin',
                 style: TextStyle(
                   fontSize: 15,
                   color: Colors.white.withOpacity(0.8),
