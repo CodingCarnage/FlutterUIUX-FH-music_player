@@ -1,7 +1,4 @@
-
-
 List<String> getLyrics() {
-
   return ['Hope stopped the heart',
   'Lost beaten lie',
   'Cold walk the earth',
@@ -41,5 +38,4 @@ List<String> getLyrics() {
   'When the broken fall alive',
   'Let the light take me too',
   'When the waters…'];
-
 }

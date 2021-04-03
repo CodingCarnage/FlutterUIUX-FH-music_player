@@ -61,7 +61,7 @@ class Lyrics extends StatelessWidget {
     final List<String> lyrics = getLyrics();
     return Container(
       child: ListWheelScrollView(
-        itemExtent: 42,
+        itemExtent: 42.0,
         diameterRatio: 1.5,
         physics: BouncingScrollPhysics(),
         children: lyrics
@@ -69,7 +69,7 @@ class Lyrics extends StatelessWidget {
               (line) => Text(
                 line,
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 20.0,
                   color: Colors.white.withOpacity(0.6),
                 ),
               ),
@@ -95,27 +95,27 @@ class TitlePlay extends StatelessWidget {
               Text(
                 'Far Away',
                 style: TextStyle(
-                  fontSize: 30,
+                  fontSize: 30.0,
                   color: Colors.white.withOpacity(0.8),
                 ),
               ),
               Text(
                 'Breaking Benjamin',
                 style: TextStyle(
-                  fontSize: 15,
+                  fontSize: 15.0,
                   color: Colors.white.withOpacity(0.8),
                 ),
               ),
             ],
           ),
-          Spacer(),
+          const Spacer(),
           FloatingActionButton(
             elevation: 0,
             highlightElevation: 0,
             backgroundColor: Color(0xffF8CB51),
             child: Icon(Icons.play_arrow),
             onPressed: () {},
-          )
+          ),
         ],
       ),
     );
@@ -129,13 +129,13 @@ class ImageAlbumDuration extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 30.0),
-      margin: const EdgeInsets.only(top: 70),
+      margin: const EdgeInsets.only(top: 70.0),
       child: Row(
         children: <Widget>[
           ImageAlbum(),
-          SizedBox(width: 27.5),
+          const SizedBox(width: 27.5),
           MusicProgressBar(),
-          SizedBox(width: 20.0),
+          const SizedBox(width: 20.0),
         ],
       ),
     );
@@ -160,15 +160,15 @@ class MusicProgressBar extends StatelessWidget {
           Stack(
             children: <Widget>[
               Container(
-                width: 3,
-                height: 230,
+                width: 3.0,
+                height: 230.0,
                 color: Colors.white.withOpacity(0.1),
               ),
               Positioned(
-                bottom: 0,
+                bottom: 0.0,
                 child: Container(
-                  width: 3,
-                  height: 150,
+                  width: 3.0,
+                  height: 150.0,
                   color: Colors.white.withOpacity(0.8),
                 ),
               ),
